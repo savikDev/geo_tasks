@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$//geo_tasks.iml" filepath="$PROJECT_DIR$//geo_tasks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/geo_tasks_db//geo_tasks_db.iml" filepath="$PROJECT_DIR$/apps/geo_tasks_db//geo_tasks_db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/geo_tasks_api//geo_tasts_api.iml" filepath="$PROJECT_DIR$/apps/geo_tasks_api//geo_tasts_api.iml" />
+    </modules>
+  </component>
+</project>
