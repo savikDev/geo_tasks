@@ -12,9 +12,8 @@ defmodule GeoTasksDb.RolesQueries do
     Add new role
   """
   @spec add_role(params) :: result when
-    params: %{name: String.t()},
-    result: {:ok, RolesSchema.t()} | {:error, Ecto.Changeset.t()}
-
+          params: %{name: String.t()},
+          result: {:ok, RolesSchema.t()} | {:error, Ecto.Changeset.t()}
   def add_role(params) do
     %RolesSchema{}
     |> RolesSchema.changeset(params)
@@ -25,9 +24,8 @@ defmodule GeoTasksDb.RolesQueries do
     Update role name
   """
   @spec update_role_name(params) :: result when
-    params: %{id: String.t(), new_name: String.t()},
-    result: {:ok, RolesSchema.t()} | {:error, Ecto.Changeset.t()}
-
+          params: %{id: String.t(), new_name: String.t()},
+          result: {:ok, RolesSchema.t()} | {:error, Ecto.Changeset.t()}
   def update_role_name(params) do
     %RolesSchema{}
     |> Repo.get!(params.id)
@@ -39,21 +37,24 @@ defmodule GeoTasksDb.RolesQueries do
     Delete role
   """
   @spec delete_role(role_id) :: result when
-    role_id: String.t(),
-    result: {integer(), nil | [term()]}
+          role_id: String.t(),
+          result: {:ok, RolesSchema.t()} | {:error, map()}
   def delete_role(role_id) do
     Repo.transaction fn ->
       %RolesSchema{}
       |> Repo.get(role_id)
       |> Repo.delete()
-      |> case do
-           {:ok, record} ->
-             record
-           {:error, changeset} ->
-             error = "INCORRECT_REQUEST"
-             Repo.rollback(error)
-         end
+      |> check_result_with_rollback()
     end
+  end
+
+  @spec check_result_with_rollback(query_res) :: result when
+          query_res: {:ok, TokensSchema.t()} | {:error, String.t()},
+          result: {:ok, TokensSchema.t()} | {:error, map()}
+  defp check_result_with_rollback({:ok, _} = res), do: res
+  defp check_result_with_rollback({:error, _}) do
+    {:error, "INCORRECT_REQUEST"}
+    |> Repo.rollback()
   end
 
   @doc """
