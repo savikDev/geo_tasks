@@ -49,8 +49,8 @@ defmodule GeoTasksDb.RolesQueries do
   end
 
   @spec check_result_with_rollback(query_res) :: result when
-          query_res: {:ok, TokensSchema.t()} | {:error, String.t()},
-          result: {:ok, TokensSchema.t()} | {:error, map()}
+          query_res: {:ok, RolesSchema.t()} | {:error, String.t()},
+          result: {:ok, RolesSchema.t()} | {:error, map()}
   defp check_result_with_rollback({:ok, _} = res), do: res
   defp check_result_with_rollback({:error, _}) do
     {:error, "INCORRECT_REQUEST"}

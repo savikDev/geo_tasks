@@ -22,9 +22,9 @@ defmodule GeoTasksDb.Roles do
   end
 
   @spec changeset(role_fields, attrs) :: result when
-    role_fields: t(),
-    attrs: map(),
-    result: Ecto.Changeset.t()
+          role_fields: t(),
+          attrs: map(),
+          result: Ecto.Changeset.t()
 
   def changeset(role_fields, attrs) do
     role_fields
