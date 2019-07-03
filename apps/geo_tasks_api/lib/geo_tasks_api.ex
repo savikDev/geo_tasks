@@ -28,7 +28,7 @@ defmodule GeoTasksApi do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/geo_tasts_api/templates",
+      use Phoenix.View, root: "lib/geo_tasks_api/templates",
                         namespace: GeoTasksApi
 
       # Import convenience functions from controllers

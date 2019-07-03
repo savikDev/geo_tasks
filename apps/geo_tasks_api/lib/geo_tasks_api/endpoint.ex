@@ -1,5 +1,5 @@
 defmodule GeoTasksApi.Endpoint do
-  use Phoenix.Endpoint, otp_app: :geo_tasts_api
+  use Phoenix.Endpoint, otp_app: :geo_tasks_api
 
   socket "/socket", GeoTasksApi.UserSocket
 
@@ -8,7 +8,7 @@ defmodule GeoTasksApi.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :geo_tasts_api, gzip: false,
+    at: "/", from: :geo_tasks_api, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -32,7 +32,7 @@ defmodule GeoTasksApi.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_geo_tasts_api_key",
+    key: "_geo_tasks_api_key",
     signing_salt: "qP6Cx6Zc"
 
   plug GeoTasksApi.Router

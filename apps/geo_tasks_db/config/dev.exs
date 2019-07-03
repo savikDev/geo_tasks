@@ -7,4 +7,5 @@ config :geo_tasks_db, GeoTasksDb.Repo,
   password: "postgres",
   database: "geo_tasks_db_dev",
   hostname: "localhost",
-  pool_size: 10
+  pool_size: 10,
+  types: GeoTasksDb.PostgresTypes

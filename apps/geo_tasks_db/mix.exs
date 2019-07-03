@@ -36,8 +36,12 @@ defmodule GeoTasksDb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1"}
+      {:postgrex, "0.14.0"},
+      {:ecto, "~> 3.1.7"},
+      {:ecto_sql, "~> 3.0"},
+      {:geo, "~> 3.0"},
+      {:geo_postgis, "~> 3.1"},
+      {:jason, "~> 1.1"}
     ]
   end
 

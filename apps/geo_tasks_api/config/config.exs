@@ -6,11 +6,11 @@
 use Mix.Config
 
 # General application configuration
-config :geo_tasts_api,
+config :geo_tasks_api,
   namespace: GeoTasksApi
 
 # Configures the endpoint
-config :geo_tasts_api, GeoTasksApi.Endpoint,
+config :geo_tasks_api, GeoTasksApi.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "mlwz4P9f7NKM6xKYQhtvUZAcG+P4aXtvgm8GUfTwQRUtrVB2A/3Hd+kqQoJdWsiu",
   render_errors: [view: GeoTasksApi.ErrorView, accepts: ~w(json)],
@@ -22,7 +22,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :geo_tasts_api, :generators,
+config :geo_tasks_api, :generators,
   context_app: false
 
 # Import environment specific config. This must remain at the bottom
