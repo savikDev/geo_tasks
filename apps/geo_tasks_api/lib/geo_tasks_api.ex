@@ -48,6 +48,14 @@ defmodule GeoTasksApi do
     end
   end
 
+  def plugs do
+    quote do
+      import Plug.Conn, only: [halt: 1, put_status: 2, send_resp: 3, get_req_header: 2,
+        assign: 3, put_req_header: 3]
+      import Phoenix.Controller, only: [render: 2, render: 3, put_view: 2]
+    end
+  end
+
   def channel do
     quote do
       use Phoenix.Channel

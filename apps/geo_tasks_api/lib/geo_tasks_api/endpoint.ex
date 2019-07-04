@@ -22,7 +22,7 @@ defmodule GeoTasksApi.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Jason
+    json_decoder: {Jason, :decode!, [[keys: :atoms]]}
 
   plug Plug.MethodOverride
   plug Plug.Head

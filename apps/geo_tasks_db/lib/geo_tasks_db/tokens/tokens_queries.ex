@@ -42,6 +42,20 @@ defmodule GeoTasksDb.TokensQueries do
     result: {:ok, TokensSchema.t()} | {:error, Ecto.Changeset.t()}
   def deactivate_token(token_id), do: change_status(token_id, false)
 
+  @doc """
+    Get token info
+  """
+  @spec get_token(token) :: result when
+          token: String.t(),
+          result: TokensSchema.t() | nil
+  def get_token(token) do
+   query = from(tokens in TokensSchema,
+     left_join: roles in assoc(tokens, :roles),
+     preload: [roles: roles],
+     where: tokens.token == ^token)
+   query
+   |> Repo.one
+  end
 #  ------------- Help function ------------------------------------------------
 
   @spec generate_token :: result when

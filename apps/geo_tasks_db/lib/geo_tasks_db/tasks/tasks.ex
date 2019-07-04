@@ -30,7 +30,7 @@ defmodule GeoTasksDb.Tasks do
     field(:distance, :float, virtual: true)
 
     belongs_to(:token_created, Tokens, foreign_key: :token_created_id, type: :binary_id)
-    belongs_to(:tokens_asigned, Tokens, foreign_key: :token_asigned_id, type: :binary_id)
+    belongs_to(:token_asigned, Tokens, foreign_key: :token_asigned_id, type: :binary_id)
     belongs_to(:pickup_locations, PickupLocations, foreign_key: :pickup_location_id, type: :binary_id)
     belongs_to(:delivery_locations, DeliveryLocations, foreign_key: :delivery_location_id, type: :binary_id)
 

@@ -21,14 +21,14 @@ defmodule GeoTasksDb.TasksQueries do
           status: String.t,
           result: {:ok, TasksSchema.t()} | {:error, Ecto.Changeset.t()}
   def create_new_task(%{pickup_location: pickup_location,
-    delivery_location: delivery_location, token_id: token_id} = params, status) do
+    delivery_location: delivery_location, token: token} = params, status) do
     Repo.transaction fn ->
       {:ok, delivery_location_point} =
         DeliveryLocationsQueries.add_new_delivery_location(delivery_location)
       {:ok, pickup_location_point}  =
         PickupLocationsQueries.add_new_pickup_location(pickup_location)
 
-      token = TokensQueries.select_token(token_id)
+      token = TokensQueries.get_token(token)
 
       %TasksSchema{name: params.name, title: params.title, status: status}
       |> TasksSchema.changeset(%{})
@@ -62,6 +62,24 @@ defmodule GeoTasksDb.TasksQueries do
       |> select_tasks_query(distance)
       |> Repo.all
     {:ok, res}
+  end
+
+  @doc """
+    Update task`s status
+  """
+  @spec update_task_status(task_id, token, status) :: result when
+          task_id: String.t(),
+          token: String.t(),
+          status: String.t(),
+          result: {:ok, TasksSchema.t()} |  {:error, String.t()}
+  def update_task_status(task_id, token, status) do
+    token = TokensQueries.get_token(token)
+
+    TasksSchema
+    |> Repo.get!(task_id)
+    |> Changeset.change(status: status)
+    |> Changeset.put_assoc(:token_asigned, token)
+    |> Repo.update
   end
 
   @doc """

@@ -37,6 +37,7 @@ defmodule GeoTasksApi.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:geo_tasks_db, in_umbrella: true},
       {:phoenix, "~> 1.3.4"},
       {:phoenix_pubsub, "~> 1.0"},
       {:gettext, "~> 0.11"},

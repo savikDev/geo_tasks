@@ -133,23 +133,35 @@ defmodule GeoTasksDb do
   @doc """
     Change task status on "DELIVERED"
   """
-  @spec update_task_delivery_status(task_id) :: result when
+  @spec update_task_assigned_status(task_id, token) :: result when
           task_id: String.t(),
+          token: String.t(),
           result: {:ok, Tasks.t()} | {:error, Ecto.Changeset.t()}
-  def update_task_delivery_status(task_id) do
+  def update_task_assigned_status(task_id, token) do
     task_id
-    |> TasksQueries.update_task_status("DELIVERED")
+    |> TasksQueries.update_task_status(token, "ASSIGNED")
   end
 
   @doc """
     Change task status on "COMPLETED"
   """
-  @spec update_task_complete_status(task_id) :: result when
+  @spec update_task_done_status(task_id) :: result when
           task_id: String.t(),
           result: {:ok, Tasks.t()} | {:error, Ecto.Changeset.t()}
-  def update_task_complete_status(task_id) do
+  def update_task_done_status(task_id) do
     task_id
-    |> TasksQueries.update_task_status("COMPLETED")
+    |> TasksQueries.update_task_status("DONE")
+  end
+
+  @doc """
+    Get token infp
+  """
+  @spec get_token(token) :: result when
+          token: String.t(),
+          result: Tokens.t() | nil
+  def get_token(token) do
+    token
+    |> TokensQueries.get_token()
   end
 
 end
