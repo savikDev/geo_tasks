@@ -89,7 +89,7 @@ defmodule GeoTasksDb do
     Create new delivery location
   """
   @spec create_new_delivery_location(location) :: result when
-          location: {number(),number()},
+          location: {number(), number()},
           result: {:ok, DeliveryLocations.t()} | {:error, Ecto.Changeset.t()}
   def create_new_delivery_location({_, _} = location) do
     location
