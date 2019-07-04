@@ -21,4 +21,11 @@ defmodule GeoTasksApi.TasksView do
       distance: task.distance
     }
   end
+
+  def render("task_status.json", task) do
+    %{
+      id: task.id,
+      status: task.status
+    }
+  end
 end

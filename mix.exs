@@ -6,7 +6,8 @@ defmodule GeoTasks.MixProject do
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
       dialyzer: [plt_add_deps: :transitive, ignore_warnings: "dialyzer.ignore-warnings", plt_add_apps: [:mix]],
-      deps: deps()] ++ coveralls_config()
+      deps: deps(),
+      aliases: aliases()] ++ coveralls_config()
   end
 
   defp coveralls_config do
@@ -28,4 +29,12 @@ defmodule GeoTasks.MixProject do
       {:excoveralls, ">= 0.0.0", only: [:test]}
     ]
   end
+
+  def aliases do
+    [
+      db_setup: "cmd --app geo_tasks_db mix ecto.setup",
+      db_reset: "cmd --app geo_tasks_db mix ecto.reset"
+    ]
+  end
+
 end

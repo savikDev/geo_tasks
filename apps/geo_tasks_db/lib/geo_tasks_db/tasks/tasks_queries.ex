@@ -77,8 +77,7 @@ defmodule GeoTasksDb.TasksQueries do
 
     TasksSchema
     |> Repo.get!(task_id)
-    |> Changeset.change(status: status)
-    |> Changeset.put_assoc(:token_asigned, token)
+    |> Changeset.change(status: status, token_asigned_id: token.id)
     |> Repo.update
   end
 
